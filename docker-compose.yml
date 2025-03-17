@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build: ./frontend/
+    container_name: frontendcontainer01
+    ports:
+      - 5174:5174
+    environment:
+      - CLOUDINARY_API="VALUE"
+    develop:
+      watch:
+        - path: package.json
+          action: rebuild
+        - path: ./
+          target: /src 
+          action: sync
