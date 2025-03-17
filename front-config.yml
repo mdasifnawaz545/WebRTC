@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontenddeployment
+spec:
+  replica: 1
+  selector:
+    matchLabels:
+      app: frontenddeployment
+  template:
+    metadata:
+      labels:
+        app: frontenddeployment
+    spec:
+      containers:
+      - name: frontenddeploymentContainer
+        image: mdasifnawaz545/webrtc-frontend:01
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontendservice
+spec:
+  selector:
+    app: frontenddeployment
+  ports:
+  - port: 5174
+    targetPort: 5174
+

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backenddeployment
+spec:
+  replica: 3
+  selector:
+    matchLabels:
+      app: backenddeployment
+  template:
+    metadata:
+      labels:
+        app: backenddeployment
+    spec:
+      containers:
+      - name: backenddeploymentcontainer
+        image: mdasifnawaz545/webrtc-backend:01
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backendservice
+spec:
+  selector:
+    app: backenddeployment
+  ports:
+  - port: 3000
+    targetPort: 5174
