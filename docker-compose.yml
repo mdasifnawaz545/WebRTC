@@ -1,5 +1,5 @@
 services:
-  frontend:
+  webrtc-frontend:
     build: ./frontend
     container_name: frontendcontainer01
     ports:
@@ -13,7 +13,7 @@ services:
         - path: ./frontend
           target: /src 
           action: sync
-  backend:
+  webrtc-backend:
     build: ./backend
     container_name: backendcontainer01
     ports:
